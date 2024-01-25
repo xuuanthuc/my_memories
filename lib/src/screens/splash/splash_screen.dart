@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   goToHome() async {
     await Future.delayed(const Duration(seconds: 1));
-    navService.pushNamed(RouteKey.home);
+    navService.pushNamed(RouteKey.root);
   }
 
   @override

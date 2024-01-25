@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './../../src/screens/home/home_screen.dart';
 import './../../src/screens/root/root_screen.dart';
 import '../../src/screens/splash/splash_screen.dart';
 import 'route_keys.dart';
@@ -9,11 +8,15 @@ class AppRoutes {
     String routeSettings = settings.name ?? '';
     switch (settings.name) {
       case RouteKey.splash:
-        return _materialRoute(routeSettings, const SplashScreen());
-      case RouteKey.home:
-        return _materialRoute(routeSettings, const HomeScreen());
-        case RouteKey.root:
-        return _materialRoute(routeSettings, const RootScreen());
+        return _materialRoute(
+          routeSettings,
+          const SplashScreen(),
+        );
+      case RouteKey.root:
+        return _materialRoute(
+          routeSettings,
+          const RootScreen(),
+        );
       default:
         return null;
     }
@@ -32,7 +35,7 @@ class AppRoutes {
         const end = Offset.zero;
         const curve = Curves.ease;
         var tween =
-        Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         return SlideTransition(
           position: animation.drive(tween),
           child: child,

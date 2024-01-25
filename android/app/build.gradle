@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -55,13 +56,13 @@ android {
     productFlavors {
         male {
             dimension "app"
-            applicationId "xuuan.male.my_memories"
-            resValue "string", "app_name", "Our Memories"
+            applicationId "xuuan.male.mi_likey"
+            resValue "string", "app_name", "Mi Likey"
         }
         female {
             dimension "app"
-            applicationId "xuuan.female.my_memories"
-            resValue "string", "app_name", "Our Memories"
+            applicationId "xuuan.female.mi_likey"
+            resValue "string", "app_name", "Mi Likey"
         }
     }
 
@@ -78,4 +79,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "36759459071",
+    "project_id": "mylikey-14625",
+    "storage_bucket": "mylikey-14625.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36759459071:android:59a18ec6cf77d51a2828ca",
+        "android_client_info": {
+          "package_name": "xuuan.male.mi_likey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsjJMw9yF3ECRet7Bj1bi1TQxNwdiihAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
