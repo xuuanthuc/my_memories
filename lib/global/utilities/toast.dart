@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_memories/global/style/app_colors.dart';
 
 void appToast(
   BuildContext context, {
@@ -12,12 +13,15 @@ void appToast(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(8),
-      color: Colors.grey.shade800,
+      color: AppColors.primary,
     ),
     child: Text(
       message,
       style: const TextStyle(
-          fontWeight: FontWeight.w500, color: Colors.white, fontSize: 12),
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+        fontSize: 12,
+      ),
     ),
   );
 

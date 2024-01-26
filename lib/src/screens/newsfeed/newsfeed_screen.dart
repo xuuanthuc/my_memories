@@ -95,41 +95,44 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
             Expanded(
-              child: BlocBuilder<NewsfeedCubit, NewsfeedState>(
-                buildWhen: (prev, cur) => prev.posts != cur.posts,
-                builder: (context, state) {
-                  if ((state.posts ?? []).isEmpty) {
-                    return Container();
-                  }
-                  return ListViewObserver(
-                    onObserve: (resultModel) {
-                      _calendarController.scrollToIndex(
-                        resultModel.firstChild?.index ?? 0,
-                        preferPosition: AutoScrollPosition.begin,
-                        duration: Duration(milliseconds: 500),
-                      );
-                      context.read<NewsfeedCubit>().onCurrentIndexChange(
-                            resultModel.firstChild?.index ?? 0,
-                          );
-                    },
-                    child: ListView.builder(
-                      controller: _newsfeedController,
-                      itemCount: state.posts?.length,
-                      itemBuilder: (context, index) {
-                        return AutoScrollTag(
-                          key: ValueKey(index),
-                          controller: _newsfeedController,
-                          index: index,
-                          child: NewsfeedItem(
-                            post: (state.posts ?? [])[index],
-                          ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: BlocBuilder<NewsfeedCubit, NewsfeedState>(
+                  buildWhen: (prev, cur) => prev.posts != cur.posts,
+                  builder: (context, state) {
+                    if ((state.posts ?? []).isEmpty) {
+                      return SizedBox.shrink();
+                    }
+                    return ListViewObserver(
+                      onObserve: (resultModel) {
+                        _calendarController.scrollToIndex(
+                          resultModel.firstChild?.index ?? 0,
+                          preferPosition: AutoScrollPosition.begin,
+                          duration: Duration(milliseconds: 500),
                         );
+                        context.read<NewsfeedCubit>().onCurrentIndexChange(
+                              resultModel.firstChild?.index ?? 0,
+                            );
                       },
-                    ),
-                  );
-                },
+                      child: ListView.builder(
+                        controller: _newsfeedController,
+                        itemCount: state.posts?.length,
+                        padding: EdgeInsets.only(bottom: 70),
+                        itemBuilder: (context, index) {
+                          return AutoScrollTag(
+                            key: ValueKey(index),
+                            controller: _newsfeedController,
+                            index: index,
+                            child: NewsfeedItem(
+                              post: (state.posts ?? [])[index],
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

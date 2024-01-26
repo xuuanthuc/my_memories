@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_memories/global/style/app_colors.dart';
 import 'package:my_memories/global/style/app_images.dart';
+import 'package:my_memories/src/di/dependencies.dart';
+import 'package:my_memories/src/screens/root/bloc/bottom_sheet_cubit.dart';
 import 'package:my_memories/src/screens/root/bloc/root_cubit.dart';
 
 import 'create_post_sheet.dart';
@@ -21,7 +23,10 @@ class PrimaryBottomNavBar extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
       ),
       builder: (BuildContext context) {
-        return CreatePostSheet();
+        return BlocProvider(
+          create: (context) => getIt.get<BottomSheetCubit>(),
+          child: CreatePostSheet(),
+        );
       },
     );
   }

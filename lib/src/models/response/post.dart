@@ -1,5 +1,5 @@
 class PostData {
-  int? id;
+  String? id;
   String? image;
   String? body;
   String? time;
@@ -12,16 +12,14 @@ class PostData {
   });
 
   PostData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    image = json['title'];
+    image = json['image'];
     body = json['body'];
-    body = json['body'];
+    time = json['time'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = image;
+    data['image'] = image;
     data['body'] = body;
     data['time'] = time;
     return data;
