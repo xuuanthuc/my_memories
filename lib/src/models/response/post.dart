@@ -1,29 +1,29 @@
 class PostData {
-  int? userId;
   int? id;
-  String? title;
+  String? image;
   String? body;
+  String? time;
 
   PostData({
-    this.userId,
     this.id,
-    this.title,
+    this.image,
     this.body,
+    this.time
   });
 
   PostData.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
     id = json['id'];
-    title = json['title'];
+    image = json['title'];
+    body = json['body'];
     body = json['body'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['userId'] = userId;
     data['id'] = id;
-    data['title'] = title;
+    data['title'] = image;
     data['body'] = body;
+    data['time'] = time;
     return data;
   }
 }

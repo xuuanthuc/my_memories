@@ -87,4 +87,23 @@ abstract class Formatter {
     String output = NumberFormat.decimalPattern().format(price);
     return output;
   }
+
+  static String timeToString(
+    DateTime? time, {
+    String formatType = 'yyyy-MM-dd – kk:mm',
+  }) {
+    try {
+      return DateFormat(formatType).format(time!);
+    } catch (e) {
+      return '';
+    }
+  }
+
+  static DateTime? stringToTime(String? stringDateTime) {
+    try {
+      return DateTime.parse(stringDateTime ?? '');
+    } catch (e) {
+      return null;
+    }
+  }
 }

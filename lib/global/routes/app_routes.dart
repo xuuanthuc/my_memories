@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_memories/src/di/dependencies.dart';
+import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
+import 'package:my_memories/src/screens/root/bloc/root_cubit.dart';
 import './../../src/screens/root/root_screen.dart';
 import '../../src/screens/splash/splash_screen.dart';
 import 'route_keys.dart';
@@ -15,7 +19,13 @@ class AppRoutes {
       case RouteKey.root:
         return _materialRoute(
           routeSettings,
-          const RootScreen(),
+          MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt.get<RootCubit>()),
+              BlocProvider(create: (context) => getIt.get<NewsfeedCubit>()),
+            ],
+            child: const RootScreen(),
+          ),
         );
       default:
         return null;
