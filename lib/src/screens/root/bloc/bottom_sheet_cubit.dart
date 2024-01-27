@@ -31,6 +31,7 @@ class BottomSheetCubit extends Cubit<BottomSheetState> {
     final db = FirebaseFirestore.instance;
     final storage = FirebaseStorage.instance.ref();
     try {
+      if(state.status == BottomSheetStatus.loading) return;
       if (File(state.imagePicked?.path ?? '').path.isNotEmpty &&
           content.isNotEmpty) {
         emit(state.copyWith(status: BottomSheetStatus.loading));

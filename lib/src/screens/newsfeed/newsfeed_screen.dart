@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_memories/global/style/app_colors.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
 import 'package:my_memories/src/screens/newsfeed/widgets/newsfeed_calendar_item.dart';
 import 'package:my_memories/src/screens/newsfeed/widgets/newsfeed_item.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
 
@@ -18,8 +20,15 @@ class NewsfeedScreen extends StatefulWidget {
 }
 
 class _NewsfeedScreenState extends State<NewsfeedScreen> {
+  RefreshController _refreshController = RefreshController();
   final AutoScrollController _newsfeedController = AutoScrollController();
   final AutoScrollController _calendarController = AutoScrollController();
+
+  void _onRefresh() async {
+    context.read<NewsfeedCubit>().getNewsfeed();
+    await Future.delayed(Duration(milliseconds: 1000));
+    _refreshController.refreshCompleted();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,10 +108,15 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: BlocBuilder<NewsfeedCubit, NewsfeedState>(
-                  buildWhen: (prev, cur) => prev.posts != cur.posts,
                   builder: (context, state) {
-                    if ((state.posts ?? []).isEmpty) {
-                      return SizedBox.shrink();
+                    if ((state.posts ?? []).isEmpty ||
+                        state.status == NewsfeedStatus.loading) {
+                      return Center(
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 0.7,
+                          child: Lottie.asset(AppImages.loading),
+                        ),
+                      );
                     }
                     return ListViewObserver(
                       onObserve: (resultModel) {
@@ -115,20 +129,29 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
                               resultModel.firstChild?.index ?? 0,
                             );
                       },
-                      child: ListView.builder(
-                        controller: _newsfeedController,
-                        itemCount: state.posts?.length,
-                        padding: EdgeInsets.only(bottom: 70),
-                        itemBuilder: (context, index) {
-                          return AutoScrollTag(
-                            key: ValueKey(index),
-                            controller: _newsfeedController,
-                            index: index,
-                            child: NewsfeedItem(
-                              post: (state.posts ?? [])[index],
-                            ),
-                          );
-                        },
+                      child: SmartRefresher(
+                        controller: _refreshController,
+                        enablePullDown: true,
+                        enablePullUp: false,
+                        onRefresh: _onRefresh,
+                        header: WaterDropMaterialHeader(
+                          backgroundColor: AppColors.primary,
+                        ),
+                        child: ListView.builder(
+                          controller: _newsfeedController,
+                          itemCount: state.posts?.length,
+                          padding: EdgeInsets.only(bottom: 70),
+                          itemBuilder: (context, index) {
+                            return AutoScrollTag(
+                              key: ValueKey(index),
+                              controller: _newsfeedController,
+                              index: index,
+                              child: NewsfeedItem(
+                                post: (state.posts ?? [])[index],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     );
                   },

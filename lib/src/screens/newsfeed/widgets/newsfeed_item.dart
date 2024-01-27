@@ -36,7 +36,7 @@ class NewsfeedItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgPicture.asset(AppImages.clock),
+              SvgPicture.asset(AppImages.calendarOutline),
               const SizedBox(width: 5),
               Text(
                 Formatter.timeToString(

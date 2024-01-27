@@ -22,7 +22,6 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -58,10 +57,15 @@ class _RootScreenState extends State<RootScreen> {
                 NewsfeedHeader(),
                 BlocListener<RootCubit, RootState>(
                   listener: (context, state) {
-                    _controller.jumpToPage(state.currentPage);
+                    _controller.animateToPage(
+                      state.currentPage,
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.ease,
+                    );
                   },
                   child: Expanded(
                     child: PageView(
+                      physics: NeverScrollableScrollPhysics(),
                       controller: _controller,
                       children: [
                         NewsfeedScreen(),

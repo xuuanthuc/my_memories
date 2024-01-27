@@ -16,16 +16,16 @@ class NewsfeedCubit extends Cubit<NewsfeedState> {
     try {
       emit(state.copyWith(status: NewsfeedStatus.loading));
       final db = FirebaseFirestore.instance;
+      await Future.delayed(Duration(seconds: 1));
       await db
           .collection("newsfeed")
           .orderBy("time", descending: true)
           .get()
           .then(
-            (querySnapshot) {
+        (querySnapshot) {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs) {
-            var post = PostData.fromJson(
-                docSnapshot.data());
+            var post = PostData.fromJson(docSnapshot.data());
             post.id = docSnapshot.id;
             posts.add(post);
           }

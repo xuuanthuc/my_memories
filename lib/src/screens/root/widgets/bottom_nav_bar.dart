@@ -53,16 +53,16 @@ class PrimaryBottomNavBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       PrimaryBottomNavBarItem(
-                        iconSelected: AppImages.heart,
-                        iconUnselected: AppImages.heartOutline,
+                        iconSelected: AppImages.calendar,
+                        iconUnselected: AppImages.calendarOutline,
                         value: state.currentPage == 0,
                         onPressItem: () {
                           context.read<RootCubit>().onPageChanged(0);
                         },
                       ),
                       PrimaryBottomNavBarItem(
-                        iconSelected: AppImages.calendar,
-                        iconUnselected: AppImages.calendarOutline,
+                        iconSelected: AppImages.clock,
+                        iconUnselected: AppImages.clockOutline,
                         value: state.currentPage == 1,
                         onPressItem: () {
                           context.read<RootCubit>().onPageChanged(1);
@@ -76,14 +76,14 @@ class PrimaryBottomNavBar extends StatelessWidget {
                           _showCreatePost(context);
                         },
                       ),
-                      PrimaryBottomNavBarItem(
-                        iconSelected: AppImages.setting,
-                        iconUnselected: AppImages.settingOutline,
-                        value: state.currentPage == 2,
-                        onPressItem: () {
-                          context.read<RootCubit>().onPageChanged(2);
-                        },
-                      ),
+                      // PrimaryBottomNavBarItem(
+                      //   iconSelected: AppImages.setting,
+                      //   iconUnselected: AppImages.settingOutline,
+                      //   value: state.currentPage == 2,
+                      //   onPressItem: () {
+                      //     context.read<RootCubit>().onPageChanged(2);
+                      //   },
+                      // ),
                     ],
                   );
                 },

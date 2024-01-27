@@ -107,12 +107,18 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
                         color: AppColors.primary,
                       ),
                     ),
-                    Text(
-                      "Create post",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
+                    BlocBuilder<BottomSheetCubit, BottomSheetState>(
+                      builder: (context, state) {
+                        return Text(
+                          state.status == BottomSheetStatus.loading
+                              ? "Uploading..."
+                              : "Create post",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                          ),
+                        );
+                      },
                     ),
                     IconButton(
                       onPressed: () => context
