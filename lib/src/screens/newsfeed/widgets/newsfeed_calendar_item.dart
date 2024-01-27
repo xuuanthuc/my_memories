@@ -32,9 +32,11 @@ class NewsfeedCalendarItem extends StatelessWidget {
               formatType: 'dd',
             ),
             style: TextStyle(
-                color: onFocus ? Colors.white : Colors.black,
-                fontWeight: FontWeight.w700,
-                fontSize: 16),
+              color: onFocus ? Colors.white : Colors.black,
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              fontFamily: 'Chewy'
+            ),
           ),
           Text(
             Formatter.timeToString(
@@ -43,7 +45,7 @@ class NewsfeedCalendarItem extends StatelessWidget {
             ),
             style: TextStyle(
               color: onFocus ? Colors.white : Colors.black,
-              // fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 6),
