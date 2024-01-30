@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_memories/src/di/dependencies.dart';
+import 'package:my_memories/src/screens/newsfeed/bloc/message_cubit.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
 import 'package:my_memories/src/screens/root/bloc/root_cubit.dart';
 import './../../src/screens/root/root_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
             providers: [
               BlocProvider(create: (context) => getIt.get<RootCubit>()),
               BlocProvider(create: (context) => getIt.get<NewsfeedCubit>()),
+              BlocProvider(create: (context) => getIt.get<MessageCubit>()),
             ],
             child: const RootScreen(),
           ),

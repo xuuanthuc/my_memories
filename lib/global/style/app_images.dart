@@ -23,4 +23,6 @@ abstract class AppImages{
   static const String iLoveU = "assets/lottie/iloveu.json";
   static const String cat = "assets/lottie/cat.json";
   static const String loading = "assets/lottie/loading.json";
+  static const String heartMessage = "assets/lottie/message_heart.json";
+  static const String empty = "assets/lottie/empty.json";
 }

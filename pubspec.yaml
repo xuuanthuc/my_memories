@@ -55,6 +55,7 @@ dependencies:
   jiffy: ^6.2.1
   lottie: ^3.0.0
   pull_to_refresh_flutter3: ^2.0.2
+  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:

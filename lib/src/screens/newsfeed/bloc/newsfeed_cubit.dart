@@ -16,7 +16,6 @@ class NewsfeedCubit extends Cubit<NewsfeedState> {
     try {
       emit(state.copyWith(status: NewsfeedStatus.loading));
       final db = FirebaseFirestore.instance;
-      await Future.delayed(Duration(seconds: 1));
       await db
           .collection("newsfeed")
           .orderBy("time", descending: true)

@@ -79,7 +79,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
           _errorUpload(state.errorMessage);
         } else if (state.status == BottomSheetStatus.success) {
           if (context.mounted) {
-            appToast(context, message: 'Your post has been shared!');
+            appToast(context, message: 'Bài đăng của bạn đã được chia sẻ!');
             Navigator.of(context).pop();
           }
         }
@@ -111,8 +111,8 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
                       builder: (context, state) {
                         return Text(
                           state.status == BottomSheetStatus.loading
-                              ? "Uploading..."
-                              : "Create post",
+                              ? "Đang chia sẻ..."
+                              : "Tạo nhật ký",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
@@ -218,7 +218,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
                   autofocus: true,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: InputDecoration(
-                    hintText: 'What are you thinking?',
+                    hintText: 'Viết gì đó đi!',
                     hintStyle: TextStyle(color: Colors.grey),
                     enabledBorder:
                         OutlineInputBorder(borderSide: BorderSide.none),

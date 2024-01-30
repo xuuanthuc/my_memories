@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_memories/global/style/app_colors.dart';
 import 'package:my_memories/src/screens/calendar/calendar_screen.dart';
 import 'package:my_memories/src/screens/menu/menu_screen.dart';
+import 'package:my_memories/src/screens/newsfeed/bloc/message_cubit.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
 import 'package:my_memories/src/screens/newsfeed/newsfeed_screen.dart';
 import 'package:my_memories/src/screens/root/bloc/root_cubit.dart';
@@ -26,6 +27,7 @@ class _RootScreenState extends State<RootScreen> {
   void initState() {
     super.initState();
     context.read<NewsfeedCubit>().getNewsfeed();
+    context.read<MessageCubit>().getMessage();
   }
 
   @override
