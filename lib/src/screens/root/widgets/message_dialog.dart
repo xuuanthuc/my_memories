@@ -97,7 +97,7 @@ class MessageDialog extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        "Chưa có tin nhắn nào gửi đến ${(AppFlavor.appFlavor == Flavor.female) ? "Cún" : "Mặp"}! Hãy đợi ${(AppFlavor.appFlavor == Flavor.female) ? "Mặp" : "Cún"} gửi tin nhắn nhé ",
+                        "Chưa có tin nhắn nào gửi đến ${(AppFlavor.appFlavor == Flavor.female) ? "Cún" : "Mặp"}! Hãy đợi ${(AppFlavor.appFlavor == Flavor.female) ? "Mặp" : "Cún"} gửi tin nhắn nhé 🤭",
                         textAlign: TextAlign.center,
                       ),
                       Lottie.asset(AppImages.empty),

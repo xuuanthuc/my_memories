@@ -56,6 +56,8 @@ dependencies:
   lottie: ^3.0.0
   pull_to_refresh_flutter3: ^2.0.2
   firebase_analytics: ^10.8.0
+  firebase_messaging: ^14.7.12
+  dio: ^5.4.0
 
 dev_dependencies:
   flutter_test:

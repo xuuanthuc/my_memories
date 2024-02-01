@@ -48,7 +48,7 @@ class _NewsfeedHeaderState extends State<NewsfeedHeader>
         children: [
           Expanded(
             child: Text(
-              'Hi bé ${(AppFlavor.appFlavor == Flavor.female) ? "Cúnn!" : "Mặp!"}',
+              'Hi bé ${(AppFlavor.appFlavor == Flavor.female) ? "Cúnn" : "Mặp"} 🫶',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 24,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -58,21 +59,17 @@ class BottomSheetCubit extends Cubit<BottomSheetState> {
           },
         );
         if (AppFlavor.appFlavor == Flavor.female) {
-          db
-              .collection("message")
-              .doc("male")
-              .set(post.toJson())
-              .then((value) => {
-                    //send noti here
-                  });
+          db.collection("message").doc("male").set(post.toJson()).then((value) {
+            sendMessage("male");
+          });
         } else {
           db
               .collection("message")
               .doc("female")
               .set(post.toJson())
-              .then((value) => {
-                    //send noti here
-                  });
+              .then((value) {
+            sendMessage("female");
+          });
         }
 
         emit(state.copyWith(status: BottomSheetStatus.success));
@@ -84,6 +81,40 @@ class BottomSheetCubit extends Cubit<BottomSheetState> {
         status: BottomSheetStatus.error,
         errorMessage: e.plugin,
       ));
+    }
+  }
+
+  void sendMessage(String document) async {
+    try {
+      final db = FirebaseFirestore.instance;
+      String? token;
+      db.collection("fcmToken").doc(document).get().then((documentSnapshot) {
+        if (documentSnapshot.exists && documentSnapshot.data() != null) {
+          token = (documentSnapshot.data() ?? {})['token'];
+          if (token == null) return;
+          final dio = Dio(
+            BaseOptions(
+              headers: {
+                "Content-Type": " application/json",
+                "Authorization":
+                    "key=AAAACI8I1P8:APA91bFsQEB0Vwxibjhyx2J1E_h3UaQ1J1nViI1ONVazxMQ5xUbhLNJ5PmwJXcZKm7yEAGWhJDGoXogHcuH9C22MMZ9xPFDVf0--a2tUaAmqRuS0MJQvnJ8z-go3a7MIWHTSIOmKfP8l"
+              },
+            ),
+          );
+          dio.post(
+            'https://fcm.googleapis.com/fcm/send',
+            data: {
+              "to": token,
+              "notification": {
+                "body": "${AppFlavor.appFlavor == Flavor.female ? "Cún" : "Mặp"} đã gửi cho bạn một tin nhắn 💌",
+                "title": "${AppFlavor.appFlavor == Flavor.female ? "Mặp" : "Cún"} ơi! Có tin nhắn mới nè 🌸"
+              },
+            },
+          );
+        }
+      });
+    } catch (e) {
+      print(e);
     }
   }
 }
