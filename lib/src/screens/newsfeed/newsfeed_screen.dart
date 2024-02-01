@@ -11,6 +11,7 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
 
 import '../../../global/style/app_images.dart';
+import 'bloc/message_cubit.dart';
 
 class NewsfeedScreen extends StatefulWidget {
   const NewsfeedScreen({super.key});
@@ -26,6 +27,7 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
 
   void _onRefresh() async {
     context.read<NewsfeedCubit>().getNewsfeed();
+    context.read<MessageCubit>().getMessage();
     await Future.delayed(Duration(milliseconds: 1000));
     _refreshController.refreshCompleted();
   }
