@@ -36,7 +36,6 @@ class NewsfeedCubit extends Cubit<NewsfeedState> {
         },
       );
       emit(state.copyWith(posts: posts, status: NewsfeedStatus.success));
-      registerToken();
     } on FirebaseException catch (e) {
       emit(state.copyWith(status: NewsfeedStatus.error));
     }

@@ -17,8 +17,10 @@ abstract class AppImages{
   static const String settingOutline = "assets/icons/setting_outline.svg";
   static const String letter = "assets/icons/letter.svg";
   static const String timeline = "assets/icons/timeline.svg";
+  static const String splashBackground = "assets/icons/splash_background.png";
+  static const String splashIcon = "assets/icons/splash_icon.png";
 
-
+  static const String login = "assets/lottie/login.json";
   static const String heartRain = "assets/lottie/heart_rain.json";
   static const String iLoveU = "assets/lottie/iloveu.json";
   static const String cat = "assets/lottie/cat.json";

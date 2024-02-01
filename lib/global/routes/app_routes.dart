@@ -4,6 +4,7 @@ import 'package:my_memories/src/di/dependencies.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/message_cubit.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
 import 'package:my_memories/src/screens/root/bloc/root_cubit.dart';
+import 'package:my_memories/src/screens/splash/login_screen.dart';
 import './../../src/screens/root/root_screen.dart';
 import '../../src/screens/splash/splash_screen.dart';
 import 'route_keys.dart';
@@ -16,6 +17,14 @@ class AppRoutes {
         return _materialRoute(
           routeSettings,
           const SplashScreen(),
+        );
+      case RouteKey.login:
+        return _materialRoute(
+          routeSettings,
+          BlocProvider(
+            create: (context) => getIt.get<NewsfeedCubit>(),
+            child: const LoginScreen(),
+          ),
         );
       case RouteKey.root:
         return _materialRoute(
