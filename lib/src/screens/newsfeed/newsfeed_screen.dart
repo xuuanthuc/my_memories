@@ -114,9 +114,12 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
                     if ((state.posts ?? []).isEmpty ||
                         state.status == NewsfeedStatus.loading) {
                       return Center(
-                        child: Container(
-                          width: MediaQuery.sizeOf(context).width * 0.7,
-                          child: Lottie.asset(AppImages.loading),
+                        child: GestureDetector(
+                          onTap: _onRefresh,
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width * 0.7,
+                            child: Lottie.asset(AppImages.loading),
+                          ),
                         ),
                       );
                     }
