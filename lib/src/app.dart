@@ -21,6 +21,15 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           theme: ThemeData(
             useMaterial3: true,
+            bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: Colors.white,
+              surfaceTintColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(10.0),
+                ),
+              ),
+            ),
           ),
           debugShowCheckedModeBanner: false,
           locale: const Locale('vi', ''),

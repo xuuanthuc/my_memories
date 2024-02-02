@@ -79,7 +79,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
           _errorUpload(state.errorMessage);
         } else if (state.status == BottomSheetStatus.success) {
           if (context.mounted) {
-            appToast(context, message: 'Bài đăng của bạn đã được chia sẻ!');
+            appToast(context, message: 'Bài viết của bạn đã được chia sẻ!');
             Navigator.of(context).pop();
           }
         }

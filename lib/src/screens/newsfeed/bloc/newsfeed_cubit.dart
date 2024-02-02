@@ -36,19 +36,30 @@ class NewsfeedCubit extends Cubit<NewsfeedState> {
         },
       );
       emit(state.copyWith(posts: posts, status: NewsfeedStatus.success));
-    } on FirebaseException catch (e) {
+    } on FirebaseException catch (_) {
       emit(state.copyWith(status: NewsfeedStatus.error));
     }
   }
 
   void registerToken() async {
-    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-    final token = await _firebaseMessaging.getToken();
-    final db = FirebaseFirestore.instance;
-    db
-        .collection("fcmToken")
-        .doc(AppFlavor.appFlavor.name)
-        .set({"token": token});
+    try {
+      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+      final token = await _firebaseMessaging.getToken();
+      final db = FirebaseFirestore.instance;
+      db
+          .collection("fcmToken")
+          .doc(AppFlavor.appFlavor.name)
+          .set({"token": token});
+    } catch (_) {}
+  }
+
+  void deletePost(PostData post) async {
+    try {
+      final db = FirebaseFirestore.instance;
+      await db.collection("newsfeed").doc(post.id).delete().then((value) {
+        getNewsfeed();
+      });
+    } on FirebaseException catch (_) {}
   }
 
   void onCurrentIndexChange(int index) {

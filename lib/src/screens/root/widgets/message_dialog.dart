@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -13,6 +14,53 @@ class MessageDialog extends StatelessWidget {
     super.key,
     this.message,
   });
+
+
+  void _showFullImage(BuildContext context, String image) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CachedNetworkImage(imageUrl: image),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 30),
+                child: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Đóng",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +102,18 @@ class MessageDialog extends StatelessWidget {
                           const SizedBox(height: 15),
                           Visibility(
                             visible: (message?.image ?? '').isNotEmpty,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                message?.image ?? '',
-                                fit: BoxFit.fitWidth,
+                            child: GestureDetector(
+                              onTap: () => _showFullImage(context, message?.image ?? ''),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Container(
+                                  height: 200,
+                                  width: double.infinity,
+                                  child: Image.network(
+                                    message?.image ?? '',
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
