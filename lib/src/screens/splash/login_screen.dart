@@ -25,7 +25,10 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_controller.text.trim() == '200124') {
       navService.pushReplacementNamed(RouteKey.root);
     } else {
-      appToast(context, message: "Sai mật mã rùi!");
+      appToast(
+        context,
+        message: "Sai mật khẩu rồi 😌",
+      );
     }
   }
 
@@ -60,78 +63,111 @@ class _LoginScreenState extends State<LoginScreen> {
             fit: BoxFit.fill,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(30).copyWith(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Lottie.asset(AppImages.login),
-              const SizedBox(height: 30),
-              Text(
-                'Nhập mật mã để xem nhé 😎🤟',
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Lottie.asset(AppImages.login),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                AppImages.loginBackground,
+                fit: BoxFit.fitWidth,
               ),
-              Spacer(),
-              TextField(
-                controller: _controller,
-                focusNode: _focusNode,
-                keyboardType: TextInputType.number,
-                onEditingComplete: () => goToHome(),
-                decoration: InputDecoration(
-                    hintText: "Nhập mật mã",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: AppColors.primary,
-                        width: 1,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: AppColors.primary,
-                        width: 1,
-                      ),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    isDense: true,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30).copyWith(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () => goToHome(),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      gradient: LinearGradient(colors: [
-                        AppColors.primary,
-                        Color(0xffEB7FB5),
-                      ])),
-                  child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Spacer(),
+                  Text(
+                    "Je t'aime",
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 36,
+                      fontFamily: "Chewy",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
-                      "Enter",
+                      "My home has been your heart since the day I met you!",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
+                        color: AppColors.primary.withOpacity(0.5),
+                        fontSize: 22,
                         fontFamily: "Chewy",
-                        color: Colors.white,
-                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 30),
+                  TextField(
+                    controller: _controller,
+                    focusNode: _focusNode,
+                    keyboardType: TextInputType.number,
+                    onEditingComplete: () => goToHome(),
+                    decoration: InputDecoration(
+                        hintText: "Nhập mật mã",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: AppColors.primary,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: AppColors.primary,
+                            width: 1,
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
+                  ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => goToHome(),
+                    child: Container(
+                      height: 54,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.primary,
+                            Color(0xffEB7FB5),
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Oke go go",
+                          style: TextStyle(
+                            fontFamily: "Chewy",
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
+                ],
               ),
-              const SizedBox(height: 30),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

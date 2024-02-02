@@ -18,6 +18,7 @@ abstract class AppImages{
   static const String letter = "assets/icons/letter.svg";
   static const String timeline = "assets/icons/timeline.svg";
   static const String splashBackground = "assets/icons/splash_background.png";
+  static const String loginBackground = "assets/icons/background_login.png";
   static const String splashIcon = "assets/icons/splash_icon.png";
 
   static const String login = "assets/lottie/login.json";

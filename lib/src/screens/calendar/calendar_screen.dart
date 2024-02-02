@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:lottie/lottie.dart';
@@ -14,17 +12,6 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _streamController.addStream(_stream);
-  }
-
-  final StreamController<int> _streamController = StreamController<int>();
-
-  final Stream<int> _stream =
-      Stream.periodic(Duration(seconds: 1), (value) => value);
-
   vehicleAge(DateTime doPurchase, DateTime doRenewel) {
     var dt1 = Jiffy.parseFromDateTime(doPurchase);
     var dt2 = Jiffy.parseFromDateTime(doRenewel);
@@ -49,7 +36,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         Column(
           children: [
             Text(
-              vehicleAge(DateTime(2024, 1, 25), DateTime.now()),
+              vehicleAge(DateTime(2024, 1, 27), DateTime.now()),
               style: TextStyle(
                   fontSize: 50,
                   fontFamily: 'RubikMoonrocks',
