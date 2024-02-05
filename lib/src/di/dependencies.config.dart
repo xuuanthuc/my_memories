@@ -14,9 +14,11 @@ import 'package:my_memories/src/screens/newsfeed/bloc/message_cubit.dart'
     as _i4;
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart'
     as _i5;
+import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_item_cubit.dart'
+    as _i6;
 import 'package:my_memories/src/screens/root/bloc/bottom_sheet_cubit.dart'
     as _i3;
-import 'package:my_memories/src/screens/root/bloc/root_cubit.dart' as _i6;
+import 'package:my_memories/src/screens/root/bloc/root_cubit.dart' as _i7;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -32,7 +34,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i3.BottomSheetCubit>(() => _i3.BottomSheetCubit());
     gh.factory<_i4.MessageCubit>(() => _i4.MessageCubit());
     gh.factory<_i5.NewsfeedCubit>(() => _i5.NewsfeedCubit());
-    gh.factory<_i6.RootCubit>(() => _i6.RootCubit());
+    gh.factory<_i6.NewsfeedItemCubit>(() => _i6.NewsfeedItemCubit());
+    gh.factory<_i7.RootCubit>(() => _i7.RootCubit());
     return this;
   }
 }

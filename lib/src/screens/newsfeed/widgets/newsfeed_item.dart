@@ -6,8 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_memories/global/style/app_colors.dart';
 import 'package:my_memories/global/style/app_images.dart';
 import 'package:my_memories/global/utilities/format.dart';
+import 'package:my_memories/src/di/dependencies.dart';
 import 'package:my_memories/src/models/response/post.dart';
 import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_cubit.dart';
+import 'package:my_memories/src/screens/newsfeed/bloc/newsfeed_item_cubit.dart';
+import 'package:my_memories/src/screens/newsfeed/widgets/newsfeed_comments.dart';
 
 class NewsfeedItem extends StatelessWidget {
   final PostData post;
@@ -72,6 +75,19 @@ class NewsfeedItem extends StatelessWidget {
         context.read<NewsfeedCubit>().deletePost(post);
       }
     });
+  }
+
+  _showComments(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return BlocProvider(
+          create: (context) => getIt.get<NewsfeedItemCubit>(),
+          child: NewsfeedCommentsBottomSheet(post: post),
+        );
+      },
+    );
   }
 
   @override
@@ -193,21 +209,53 @@ class NewsfeedItem extends StatelessWidget {
           Text(
             post.body ?? '',
           ),
-          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                AppImages.flower,
-                height: 15,
-                width: 15,
-                colorFilter: ColorFilter.mode(
-                  AppColors.primary,
-                  BlendMode.srcIn,
+              Expanded(
+                child: Container(
+                  height: 1,
+                  color: AppColors.primary.withOpacity(0.5),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(10).copyWith(
+                  bottom: 0,
+                ),
+                child: SvgPicture.asset(
+                  AppImages.flower,
+                  height: 15,
+                  width: 15,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  height: 1,
+                  color: AppColors.primary.withOpacity(0.5),
+                ),
+              )
             ],
-          )
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  AppImages.heartOutline,
+                ),
+              ),
+              IconButton(
+                onPressed: () => _showComments(context),
+                icon: SvgPicture.asset(
+                  AppImages.comment,
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
