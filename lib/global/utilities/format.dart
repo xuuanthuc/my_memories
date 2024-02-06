@@ -4,10 +4,7 @@ abstract class Formatter {
   static String timeAgoSinceDate(String dateString,
       {bool numericDates = true}) {
     try {
-      DateTime notificationDate = DateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'")
-          .parse(dateString, true)
-          .toUtc()
-          .toLocal();
+      DateTime notificationDate = DateTime.parse(dateString).toUtc().toLocal();
       final date2 = DateTime.now();
       final difference = date2.difference(notificationDate);
       if (difference.inDays > 8) {

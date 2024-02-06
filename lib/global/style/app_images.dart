@@ -21,6 +21,8 @@ abstract class AppImages{
   static const String loginBackground = "assets/icons/background_login.png";
   static const String splashIcon = "assets/icons/splash_icon.png";
   static const String comment = "assets/icons/comment.svg";
+  static const String foot = "assets/icons/foot.svg";
+  static const String footOutline = "assets/icons/foot_outline.svg";
 
   static const String login = "assets/lottie/login.json";
   static const String heartRain = "assets/lottie/heart_rain.json";

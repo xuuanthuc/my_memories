@@ -106,7 +106,7 @@ class BottomSheetCubit extends Cubit<BottomSheetState> {
             data: {
               "to": token,
               "notification": {
-                "body": "AppFl đã gửi cho bạn một tin nhắn 💌",
+                "body": "${AppFlavor.appFlavor == Flavor.female ? "Cún" : "Mặp"} đã gửi cho bạn một tin nhắn 💌",
                 "title": "${AppFlavor.appFlavor == Flavor.female ? "Mặp" : "Cún"} ơi! Có tin nhắn mới nè 🌸"
               },
             },

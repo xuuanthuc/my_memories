@@ -243,17 +243,9 @@ class NewsfeedItem extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  AppImages.heartOutline,
-                ),
-              ),
-              IconButton(
                 onPressed: () => _showComments(context),
-                icon: SvgPicture.asset(
-                  AppImages.comment,
-                ),
-              )
+                icon: Text("🌸 Phản hồi"),
+              ),
             ],
           ),
         ],

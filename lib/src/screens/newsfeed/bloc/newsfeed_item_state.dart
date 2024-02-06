@@ -10,19 +10,22 @@ enum CommentStatus {
 class NewsfeedItemState extends Equatable {
   final List<CommentData>? comments;
   final CommentStatus? status;
+  final FavouriteData? favourite;
 
   NewsfeedItemState({
     this.status,
     this.comments,
+    this.favourite,
   });
 
-  NewsfeedItemState copyWith({
-    List<CommentData>? comments,
-    CommentStatus? status,
-  }) {
+  NewsfeedItemState copyWith(
+      {List<CommentData>? comments,
+      CommentStatus? status,
+      FavouriteData? favourite}) {
     return NewsfeedItemState(
       comments: comments ?? this.comments,
       status: status ?? this.status,
+      favourite: favourite ?? this.favourite,
     );
   }
 
@@ -30,5 +33,6 @@ class NewsfeedItemState extends Equatable {
   List<Object?> get props => [
         comments,
         status,
+        favourite,
       ];
 }

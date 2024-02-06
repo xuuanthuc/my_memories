@@ -16,3 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+fvm  flutter build apk --flavor female -t lib/main_female.dart  
+fvm  flutter build apk --flavor male -t lib/main_male.dart  
